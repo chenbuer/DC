@@ -34,4 +34,5 @@ $('#dg').edatagrid({
 	destroyUrl: 'destroy_user.php'
 });
 </script>
+
 <jsp:include page="/WEB-INF/jsp/template/footer.jsp"></jsp:include>

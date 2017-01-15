@@ -24,6 +24,6 @@
 			<attribute name="owner.project.facets" value="me.hibernate"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/all-withNoHibernate"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/ownLib"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>
