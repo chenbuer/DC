@@ -8,18 +8,19 @@
 %>
 <jsp:include page="/WEB-INF/jsp/template/header.jsp"></jsp:include>
 
-<table id="dg" title="My Users" class="" style="width:550px;height:250px"
-		toolbar="#toolbar" idField="id"
-		rownumbers="true" fitColumns="true" singleSelect="true">
-	<thead>
-		<tr>
-			<th field="firstname" width="50" editor="{type:'validatebox',options:{required:true}}">First Name</th>
-			<th field="lastname" width="50" editor="{type:'validatebox',options:{required:true}}">Last Name</th>
-			<th field="phone" width="50" editor="text">Phone</th>
-			<th field="email" width="50" editor="{type:'validatebox',options:{validType:'email'}}">Email</th>
-		</tr>
-	</thead>
-</table>
+<table id="productlist" title="Product Show" class="easyui-datagrid" style="width:700px;height:250px"  
+        url="be/productshow/list"  
+        toolbar="#toolbar" pagination="true"  
+        rownumbers="true" fitColumns="true" singleSelect="true">  
+    <thead>  
+        <tr>  
+            <th field="pId" width="50">序号</th>  
+            <th field="pName" width="50">产品名称</th>  
+            <th field="pDesc" width="50">产品简介</th>  
+            <th field="pPic" width="50">产品 图片</th>  
+        </tr>  
+    </thead>  
+</table>  
 <div id="toolbar">
 	<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="javascript:$('#dg').edatagrid('addRow')">New</a>
 	<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="javascript:$('#dg').edatagrid('destroyRow')">Destroy</a>
@@ -34,5 +35,4 @@ $('#dg').edatagrid({
 	destroyUrl: 'destroy_user.php'
 });
 </script>
-
 <jsp:include page="/WEB-INF/jsp/template/footer.jsp"></jsp:include>

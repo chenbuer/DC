@@ -34,8 +34,7 @@ public class News implements java.io.Serializable {
 	private Integer sort;
 	private String imgUrl;
 	private Integer createUser;
-	private Integer rec;//鏂伴椈鏄惁鎺ㄨ崘鍒伴椤碉紝1--鎺ㄨ崘鍒伴椤碉紝2||null--涓嶆帹鑽?	private Integer dataId;//濡傛灉琚帹鑽愬埌棣栭〉锛屾墍瀵瑰簲鐨刢atadata琛ㄤ腑鐨処d
-	// Constructors
+	private Integer rec;//新闻是否推荐到首页，1--推荐到首页，2||null--不推荐
 
 	/** default constructor */
 	public News() {
