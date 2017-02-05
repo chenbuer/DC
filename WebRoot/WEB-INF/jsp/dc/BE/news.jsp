@@ -20,7 +20,7 @@
 		if (row) {
 			$('#dlg').dialog('open').dialog('setTitle', 'Edit News');
 			$('#fm').form('load', row);
-			url = 'news/editNews?id=' + row.id;
+			url = 'editNews';
 		}
 	}
 	function saveNews() {

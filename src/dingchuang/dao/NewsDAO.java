@@ -48,6 +48,14 @@ public class NewsDAO {
 		session.close();
 		HibernateUtil.closeSession();
 	}
+
+	public void update(News newNews) {
+		Session session=HibernateUtil.currentSession();
+		Transaction tx=session.beginTransaction();
+		session.update(newNews);
+		tx.commit();
+		HibernateUtil.closeSession();
+	}
 	
 
 }

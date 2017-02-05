@@ -52,7 +52,7 @@ public class DCBENewsController extends BaseController {
 	}
 	
 	 @RequestMapping("/delNews")  
-	 public String removeUser(HttpServletRequest request,HttpServletResponse response) throws Exception{  
+	 public String delNews(HttpServletRequest request,HttpServletResponse response) throws Exception{  
 	    Json json = new Json();//用于向前端发送消息  
 	    int newsId=Integer.parseInt(request.getParameter("id")) ;  
 	    try{  
@@ -66,6 +66,22 @@ public class DCBENewsController extends BaseController {
 	        writeJson(json,response);  
 	        return null;  
 	    }  
-	  
+	}  
+	 
+	 @RequestMapping("/editNews")  
+	 public String editNews(News newNews, HttpServletRequest request,HttpServletResponse response) throws Exception{  
+	    Json json = new Json();//用于向前端发送消息  
+//	    int newsId=Integer.parseInt(request.getParameter("id")) ;  //没用
+	    try{  
+	    	newsDAO.update(newNews);  
+	        json.setMsg("删除成功！");  
+	        json.setSuccess(true);  
+	        writeJson(json,response);  
+	        return null;  
+	    }catch (Exception e){  
+	        json.setMsg("删除失败！"+e.getMessage());  
+	        writeJson(json,response);  
+	        return null;  
+	    }  
 	}  
 }
