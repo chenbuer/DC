@@ -50,4 +50,22 @@ public class DCBENewsController extends BaseController {
 		writeJson(json, response);
 		return null;
 	}
+	
+	 @RequestMapping("/delNews")  
+	 public String removeUser(HttpServletRequest request,HttpServletResponse response) throws Exception{  
+	    Json json = new Json();//用于向前端发送消息  
+	    int newsId=Integer.parseInt(request.getParameter("id")) ;  
+	    try{  
+	    	newsDAO.delete((News)newsDAO.getById(newsId));  
+	        json.setMsg("删除成功！");  
+	        json.setSuccess(true);  
+	        writeJson(json,response);  
+	        return null;  
+	    }catch (Exception e){  
+	        json.setMsg("删除失败！"+e.getMessage());  
+	        writeJson(json,response);  
+	        return null;  
+	    }  
+	  
+	}  
 }

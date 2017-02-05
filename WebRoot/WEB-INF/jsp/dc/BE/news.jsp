@@ -11,7 +11,7 @@
 <script type="text/javascript">
 	var url;
 	function newNews() {
-		$('#dlg').dialog('open').dialog('setTitle', 'New News');
+		$('#dlg').dialog('open').dialog('setTitle', '添加新闻');
 		$('#fm').form('clear');
 		url = 'addNews';
 	}
@@ -55,10 +55,10 @@
 	function removeNews() {
 		var row = $('#dg').datagrid('getSelected');
 		if (row) {
-			$.messager.confirm('Confirm',
-					'Are you sure you want to remove this News?', function(r) {
+			$.messager.confirm('再想一下',
+					'确定删除这条新闻？', function(r) {
 						if (r) {
-							$.post('remove_News.php', {
+							$.post('delNews', {
 								id : row.id
 							}, function(result) {
 								if (result.success) {
@@ -116,7 +116,7 @@
 			<label>简要描述:</label> <input name="descr">
 		</div>
 		<div class="fitem">
-			<label>内容:</label> <input name="content">
+			<label>正文:</label> <input name="content">
 		</div>
 	</form>
 </div>

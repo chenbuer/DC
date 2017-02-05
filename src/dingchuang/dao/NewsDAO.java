@@ -39,4 +39,15 @@ public class NewsDAO {
 		HibernateUtil.closeSession();
 		return news;
 	}
+	
+	public void delete(News news) {
+		Session session=HibernateUtil.currentSession();
+		Transaction tx=session.beginTransaction();
+		session.delete(news);
+		tx.commit();
+		session.close();
+		HibernateUtil.closeSession();
+	}
+	
+
 }
