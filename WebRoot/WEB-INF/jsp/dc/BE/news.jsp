@@ -83,13 +83,13 @@
 
 <table id="dg" title="新闻后台管理" class="easyui-datagrid"
 	style="width:700px;height:250px" url="listNews"
-	toolbar="#toolbar" pagination="true" rownumbers="true"
+	toolbar="#toolbar" pagination="true" rownumbers="false"
 	fitColumns="true" singleSelect="true">
 	<thead>
 		<tr>
-			<th field="newsId" width="50">ID</th>
-			<th field="newsTitle" width="50">新闻标题</th>
-			<th field="newsDesc" width="50">简要描述</th>
+			<th field="id" width="50">ID</th>
+			<th field="title" width="50">新闻标题</th>
+			<th field="descr" width="50">简要描述</th>
 		</tr>
 	</thead>
 </table>
