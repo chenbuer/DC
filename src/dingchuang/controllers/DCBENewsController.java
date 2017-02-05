@@ -18,7 +18,11 @@ import dingchuang.entity.News;
 public class DCBENewsController extends BaseController {
 
 	private NewsDAO newsDAO = new NewsDAO();
-
+	
+	/**
+	 *后台管理的总的页面 
+	 * @return
+	 */
 	@RequestMapping(value = "/list")
 	public String goList() {
 		return "dc/BE/news";
@@ -37,10 +41,10 @@ public class DCBENewsController extends BaseController {
 			HttpServletResponse response) throws Exception {
 		Json json = new Json();// 用于向前端发送消息
 		if (newsDAO.getById(news.getId()) != null) {
-			json.setMsg("新建用户失败，用户已存在！");
+			json.setMsg("添加新闻失败，该ID已经存在！");
 		} else {
 			newsDAO.save(news);
-			json.setMsg("新建用户成功！");
+			json.setMsg("添加新闻成功！");
 			json.setSuccess(true);
 		}
 		writeJson(json, response);

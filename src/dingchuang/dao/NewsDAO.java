@@ -12,30 +12,30 @@ public class NewsDAO {
 
 	// 要是不存在返回NULL
 	public News getById(int id) {
-		String sql = "FROM News where id=" + id + ";";
+		String sql = "FROM News where id=" + id;
 		Session session = HibernateUtil.currentSession();
 		session.beginTransaction();
-		News news = (News) session.createQuery(sql);
+		List<News> news = (List<News>) session.createQuery(sql).list();
 		HibernateUtil.closeSession();
-		if (news == null)
+		if (news.size() <= 0)
 			return null;
 		else
-			return news;
+			return news.get(0);
 	}
 
 	public void save(News news) {
-		Session session=HibernateUtil.currentSession();
-		Transaction tx= session.beginTransaction();
+		Session session = HibernateUtil.currentSession();
+		Transaction tx = session.beginTransaction();
 		session.save(news);
 		tx.commit();
 		HibernateUtil.closeSession();
 	}
 
 	public List<News> listAllNews() {
-		String hql="FROM News";
-		Session session=HibernateUtil.currentSession();
+		String hql = "FROM News";
+		Session session = HibernateUtil.currentSession();
 		session.beginTransaction();
-		List<News> news=(List<News>) session.createQuery(hql);
+		List<News> news = (List<News>) session.createQuery(hql).list();
 		HibernateUtil.closeSession();
 		return news;
 	}

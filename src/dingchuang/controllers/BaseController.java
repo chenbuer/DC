@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.alibaba.fastjson.JSON;
 
+
 public class BaseController {
 
 	public void writeJsonByFilter(Object object, HttpServletResponse response) {

@@ -26,6 +26,10 @@ url(<%=basePath %>css/bootstrap.min.css)
 @import
 url(<%=basePath %>css/style.css)
 </style>
+<style type="text/css">
+@import
+url(<%=basePath %>css/easyui.css)
+</style>
 <!-- 下面的引入方式也是可以的 -->
 <!-- 
 <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -92,12 +96,10 @@ url(<%=basePath %>css/style.css)
 						<li><a href="<%=basePath %>hr">人力资源</a></li>
 						<li><a href="<%=basePath %>contact">联系我们</a></li>
 					</ul>
-					<form name="search_form" class="navbar-form navbar-right" role="search_form" target="_blank" onsubmit="return gowhere1(this)">
-						<!-- <div class="form-group"> -->
+<!-- 					<form name="search_form" class="navbar-form navbar-right" role="search_form" target="_blank" onsubmit="return gowhere1(this)">
 							<input id="word" type="text" class="form-control" name="word" placeholder="baidu" >
-						<!-- </div> -->
 						<button type="submit" class="btn btn-default">百度</button>
 					</form>
 				</div>
-
+-->
 				</nav>
