@@ -6,9 +6,7 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<link href="<%=basePath%>kindeditor/themes/default/default.css" rel="stylesheet">
-<script charset="utf-8" src="<%=basePath%>kindeditor/kindeditor.js"></script>
-<script charset="utf-8" src="<%=basePath%>kindeditor/lang/zh_CN.js"></script>
+<jsp:include page="/WEB-INF/jsp/template/header.jsp"></jsp:include>
 <style> 
 body
 {
@@ -19,18 +17,6 @@ body
 </style>
 <script type="text/javascript">
 	var url;
-	KindEditor.ready(function(K) {
-		var editor1 = K.create('#newsContent', {
-			cssPath : '${baseUrl}/kindeditor/plugins/code/prettify.css',
-			uploadJson : '${baseUrl}/file/upload',
-			fileManagerJson : '${baseUrl}/file/manager',
-			allowFileManager : true,
-			afterCreate : function() { this.sync();},
-			afterChange: function () { this.sync();},
-      		afterBlur: function () { this.sync(); }
-		});
-		prettyPrint();
-	});
 	function newNews() {
 		$('#dlg').dialog('open').dialog('setTitle', '添加新闻');
 		$('#fm').form('clear');
@@ -39,7 +25,7 @@ body
 	function editNews() {
 		var row = $('#dg').datagrid('getSelected');
 		if (row) {
-			$('#dlg').dialog('open').dialog('setTitle', '编辑新闻');
+			$('#dlg').dialog('open').dialog('setTitle', 'Edit News');
 			$('#fm').form('load', row);
 			url = 'editNews';
 		}
@@ -96,9 +82,6 @@ body
 		}
 	}
 </script>
-
-<jsp:include page="/WEB-INF/jsp/template/header.jsp"></jsp:include>
-
 <h2>新闻后台管理中心</h2>
 <div class="demo-info" style="margin-bottom:10px">
 	<div class="demo-tip icon-tip"></div>
@@ -124,7 +107,7 @@ body
 </div>
 
 <div id="dlg" class="easyui-dialog"
-	style="width:1000px;height:600px;padding:10px 20px" closed="true"
+	style="width:400px;height:280px;padding:10px 20px" closed="true"
 	buttons="#dlg-buttons">
 	<div class="ftitle">新闻内容</div>
 	<form id="fm" method="post" novalidate>
@@ -140,7 +123,7 @@ body
 			<label>简要描述:</label> <input name="descr">
 		</div>
 		<div class="fitem">
-			<label>正文:</label> <textarea id="newsContent" name="content" style="width:700px; height:300px;"></textarea>
+			<label>正文:</label> <input name="content">
 		</div>
 	</form>
 </div>

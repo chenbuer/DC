@@ -7,7 +7,33 @@
 			+ path + "/";
 %>
 <jsp:include page="/WEB-INF/jsp/template/header.jsp"></jsp:include>
-
+<script type="text/javascript">
+	var xhr = new XMLHttpRequest();
+	var setNews=function(threeNews){
+		document.getElementById("news1title").innerHTML=threeNews[0]["title"];
+		document.getElementById("news1desc").innerHTML=threeNews[0]["descr"];
+		
+		document.getElementById("news2title").innerHTML=threeNews[1]["title"];
+		document.getElementById("news2desc").innerHTML=threeNews[1]["descr"];
+		
+		document.getElementById("news3title").innerHTML=threeNews[2]["title"];
+		document.getElementById("news3desc").innerHTML=threeNews[2]["descr"];
+	}
+	xhr.open("GET", "index/newsQuery");
+	xhr.onreadystatechange=function(){
+		if(4==xhr.readyState){
+			if(200==xhr.status){
+				console.log("get news success:"+xhr.responseText);
+				setNews(JSON.parse(xhr.response));
+			}
+			else{
+				console.log("获取news失败");
+			}
+		}
+	}
+	xhr.send();
+	
+</script>
 <div class="carousel slide" id="carousel-958836">
 					<ol class="carousel-indicators">
 						<li class="active" data-slide-to="0"
@@ -57,34 +83,25 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-4">
-				<h2>Heading</h2>
-				<p>Donec id elit non mi porta gravida at eget metus. Fusce
-					dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
-					ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
-					magna mollis euismod. Donec sed odio dui.</p>
-				<p>
-					<a class="btn" href="#">View details Â»</a>
+			<div class="col-md-4" id="news1">
+				<h2 id="news1title">======</h2>
+				<p id="news1desc">===========================</p>
+				<p id="news1url">
+					<a class="btn" href="#">View details »</a>
 				</p>
 			</div>
-			<div class="col-md-4">
-				<h2>Heading</h2>
-				<p>Donec id elit non mi porta gravida at eget metus. Fusce
-					dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
-					ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
-					magna mollis euismod. Donec sed odio dui.</p>
-				<p>
-					<a class="btn" href="#">View details Â»</a>
+			<div class="col-md-4" id="news2">
+				<h2 id="news2title">======</h2>
+				<p id="news2desc">===========================</p>
+				<p id="news2url">
+					<a class="btn" href="#">View details »</a>
 				</p>
 			</div>
-			<div class="col-md-4">
-				<h2>Heading</h2>
-				<p>Donec id elit non mi porta gravida at eget metus. Fusce
-					dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
-					ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
-					magna mollis euismod. Donec sed odio dui.</p>
-				<p>
-					<a class="btn" href="#">View details Â»</a>
+			<div class="col-md-4" id="news3">
+				<h2 id="news3title">======</h2>
+				<p id="news3desc">===========================</p>
+				<p id="news3url">
+					<a class="btn" href="#">View details »</a>
 				</p>
 			</div>
 		</div>

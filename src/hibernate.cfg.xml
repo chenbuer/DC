@@ -24,5 +24,6 @@
 	<property name="current_session_context_class">thread</property>
 	<mapping class="dingchuang.entity.AboutArticle" />
 	<mapping class="dingchuang.entity.News" />
+	<mapping class="dingchuang.entity.Product" />
 </session-factory>
 </hibernate-configuration>

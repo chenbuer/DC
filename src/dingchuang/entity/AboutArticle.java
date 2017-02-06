@@ -2,10 +2,12 @@ package dingchuang.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
 
 @Entity
+@Table(name="DC_AboutArticle")
 public class AboutArticle {
 
 	@Id
