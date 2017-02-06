@@ -14,7 +14,7 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="pId")
-	private int pid;
+	private int id;
 	@Column(name="pName")
 	private String pname;
 	@Column(name="pDesc")
@@ -24,12 +24,12 @@ public class Product {
 	@Column(name="pContent")
 	private String pcontent;// æﬂÃÂΩÈ…‹
 
-	public int getPid() {
-		return pid;
+	public int getId() {
+		return id;
 	}
 
-	public void setPid(int pid) {
-		this.pid = pid;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getPname() {

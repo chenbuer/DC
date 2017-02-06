@@ -7,7 +7,14 @@
 			+ path + "/";
 %>
 <jsp:include page="/WEB-INF/jsp/template/header.jsp"></jsp:include>
-
+<style> 
+body
+{
+	background-image:url("<%=basePath%>img/be_img.jpg");
+	background-size:100% 100%;
+	background-repeat:no-repeat;
+}
+</style>
 <script type="text/javascript">
 	var url;
 	function newNews() {
