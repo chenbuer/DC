@@ -6,6 +6,9 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
+<jsp:include page="/WEB-INF/jsp/template/header.jsp"></jsp:include>
+
+
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <link href="<%=basePath%>kindeditor/themes/default/default.css" rel="stylesheet">
 <script charset="utf-8" src="<%=basePath%>kindeditor/kindeditor.js"></script>
@@ -21,11 +24,10 @@
 				this.sync();
 			}
 		});
-		prettyPrint();
+		//prettyPrint();
 	});
 </script>
 
-<jsp:include page="/WEB-INF/jsp/template/header.jsp"></jsp:include>
 
 
 <form:form commandName="aboutArticle" name="aboutArticle"

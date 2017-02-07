@@ -24,6 +24,7 @@ public class NewsDAO {
 	}
 
 	public void save(News news) {
+		//保存的时候要主要title是唯一的
 		Session session = HibernateUtil.currentSession();
 		Transaction tx = session.beginTransaction();
 		session.save(news);
@@ -34,7 +35,7 @@ public class NewsDAO {
 	public List<News> listAllNews() {
 		String hql = "FROM News";
 		Session session = HibernateUtil.currentSession();
-		session.beginTransaction();
+//		session.beginTransaction();
 		List<News> news = (List<News>) session.createQuery(hql).list();
 		HibernateUtil.closeSession();
 		return news;

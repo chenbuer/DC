@@ -6,31 +6,39 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<link href="<%=basePath%>kindeditor/themes/default/default.css" rel="stylesheet">
-<script charset="utf-8" src="<%=basePath%>kindeditor/kindeditor.js"></script>
-<script charset="utf-8" src="<%=basePath%>kindeditor/lang/zh_CN.js"></script>
-<style> 
-body
-{
-	background-image:url("<%=basePath%>img/be_img.jpg");
-	background-size:100% 100%;
-	background-repeat:no-repeat;
+<jsp:include page="/WEB-INF/jsp/template/header.jsp"></jsp:include>
+
+
+<style>
+body {
+	background-image: url("<%=basePath%>img/be_img.jpg");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
 }
 </style>
 <script type="text/javascript">
 	var url;
+
 	KindEditor.ready(function(K) {
 		var editor1 = K.create('#newsContent', {
 			cssPath : '${baseUrl}/kindeditor/plugins/code/prettify.css',
 			uploadJson : '${baseUrl}/file/upload',
 			fileManagerJson : '${baseUrl}/file/manager',
 			allowFileManager : true,
-			afterCreate : function() { this.sync();},
-			afterChange: function () { this.sync();},
-      		afterBlur: function () { this.sync(); }
+			afterCreate : function() {
+				this.sync();
+			},
+			afterChange : function() {
+				this.sync();
+			},
+			afterBlur : function() {
+				this.sync();
+			}
 		});
-		prettyPrint();
+//		prettyPrint();
 	});
+
+	
 	function newNews() {
 		$('#dlg').dialog('open').dialog('setTitle', '添加新闻');
 		$('#fm').form('clear');
@@ -76,28 +84,26 @@ body
 	function removeNews() {
 		var row = $('#dg').datagrid('getSelected');
 		if (row) {
-			$.messager.confirm('再想一下',
-					'确定删除这条新闻？', function(r) {
-						if (r) {
-							$.post('delNews', {
-								id : row.id
-							}, function(result) {
-								if (result.success) {
-									$('#dg').datagrid('reload'); // reload the News data  
-								} else {
-									$.messager.show({ // show error message  
-										title : 'Error',
-										msg : result.msg
-									});
-								}
-							}, 'json');
+			$.messager.confirm('再想一下', '确定删除这条新闻？', function(r) {
+				if (r) {
+					$.post('delNews', {
+						id : row.id
+					}, function(result) {
+						if (result.success) {
+							$('#dg').datagrid('reload'); // reload the News data  
+						} else {
+							$.messager.show({ // show error message  
+								title : 'Error',
+								msg : result.msg
+							});
 						}
-					});
+					}, 'json');
+				}
+			});
 		}
 	}
 </script>
 
-<jsp:include page="/WEB-INF/jsp/template/header.jsp"></jsp:include>
 
 <h2>新闻后台管理中心</h2>
 <div class="demo-info" style="margin-bottom:10px">
@@ -106,9 +112,9 @@ body
 </div>
 
 <table id="dg" title="新闻后台管理" class="easyui-datagrid"
-	style="width:700px;height:250px" url="listNews"
-	toolbar="#toolbar" pagination="true" rownumbers="false"
-	fitColumns="true" singleSelect="true">
+	style="width:700px;height:250px" url="listNews" toolbar="#toolbar"
+	pagination="true" rownumbers="false" fitColumns="true"
+	singleSelect="true">
 	<thead>
 		<tr>
 			<th field="id" width="50">ID</th>
@@ -118,9 +124,11 @@ body
 	</thead>
 </table>
 <div id="toolbar">
-	<a href="javascript:void(0);" class="easyui-linkbutton"	iconCls="icon-add" plain="true" onclick="newNews()">新增</a> 
-	<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editNews()">编辑</a> 
-	<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="removeNews()">删除</a>
+	<a href="javascript:void(0);" class="easyui-linkbutton"
+		iconCls="icon-add" plain="true" onclick="newNews()">新增</a> <a href="#"
+		class="easyui-linkbutton" iconCls="icon-edit" plain="true"
+		onclick="editNews()">编辑</a> <a href="#" class="easyui-linkbutton"
+		iconCls="icon-remove" plain="true" onclick="removeNews()">删除</a>
 </div>
 
 <div id="dlg" class="easyui-dialog"
@@ -129,24 +137,29 @@ body
 	<div class="ftitle">新闻内容</div>
 	<form id="fm" method="post" novalidate>
 		<div class="fitem">
-			<label>ID:</label> <input name="id"
-				class="easyui-validatebox" required="true">
+			<label>ID:</label> <input name="id" class="easyui-textbox" required="true">
 		</div>
 		<div class="fitem">
-			<label>新闻标题:</label> <input name="title"
-				class="easyui-validatebox" required="true">
+			<label>新闻标题:</label> <input name="title" class="easyui-textbox" required="true">
 		</div>
 		<div class="fitem">
-			<label>简要描述:</label> <input name="descr">
+			<label>创建时间:</label> <input class="easyui-datebox" name="createTime" required="true">
 		</div>
 		<div class="fitem">
-			<label>正文:</label> <textarea id="newsContent" name="content" style="width:700px; height:300px;"></textarea>
+			<label>简要描述:</label> <input name="descr" class="easyui-textbox" required="true">
+		</div>
+		<div class="fitem">
+			<label>正文:</label>
+			<textarea id="newsContent" name="content"
+				style="width:700px; height:300px;"></textarea>
 		</div>
 	</form>
 </div>
 <div id="dlg-buttons">
-	<a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveNews()">保存</a> 
-	<a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')">取消</a>
+	<a href="javascript:void(0);" class="easyui-linkbutton"
+		iconCls="icon-ok" onclick="saveNews()">保存</a> <a
+		href="javascript:void(0);" class="easyui-linkbutton"
+		iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')">取消</a>
 </div>
 
 

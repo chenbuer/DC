@@ -35,13 +35,18 @@ url(<%=basePath %>css/easyui.css)
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
 -->
-<script src="<%=basePath%>js/scripts.js"></script>
 <script src="<%=basePath%>js/jquery.min.js"></script>
+<script src="<%=basePath%>js/scripts.js"></script>
 <script src="<%=basePath%>js/bootstrap.min.js"></script>
 <script src="<%=basePath%>easyUI/jquery.easyui.min.js"></script>
+<link rel="stylesheet" href="<%=basePath%>JqueryUI/jquery-ui.min.css">
 <link rel="stylesheet" type="text/css" href="<%=basePath%>easyUI/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css" href="<%=basePath%>easyUI/themes/icon.css">
 <link rel="shortcut icon" href="<%=basePath %>favicon.ico" type="image/x-icon">
+<link href="<%=basePath%>kindeditor/themes/default/default.css"
+	rel="stylesheet">
+<script charset="utf-8" src="<%=basePath%>kindeditor/kindeditor.js"></script>
+<script charset="utf-8" src="<%=basePath%>kindeditor/lang/zh_CN.js"></script>
 
 </head>
 <body>
@@ -63,7 +68,7 @@ url(<%=basePath %>css/easyui.css)
 							class="icon-bar"></span><span class="icon-bar"></span><span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="<%=basePath %>">定创首页</a>
+					<a class="navbar-brand" href="<%=basePath%>">定创首页</a>
 				</div>
 
 				<div class="collapse navbar-collapse"
