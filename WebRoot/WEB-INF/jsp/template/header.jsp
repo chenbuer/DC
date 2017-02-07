@@ -39,7 +39,6 @@ url(<%=basePath %>css/easyui.css)
 <script src="<%=basePath%>js/scripts.js"></script>
 <script src="<%=basePath%>js/bootstrap.min.js"></script>
 <script src="<%=basePath%>easyUI/jquery.easyui.min.js"></script>
-<link rel="stylesheet" href="<%=basePath%>JqueryUI/jquery-ui.min.css">
 <link rel="stylesheet" type="text/css" href="<%=basePath%>easyUI/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css" href="<%=basePath%>easyUI/themes/icon.css">
 <link rel="shortcut icon" href="<%=basePath %>favicon.ico" type="image/x-icon">

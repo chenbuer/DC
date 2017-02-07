@@ -40,13 +40,15 @@ public class DCBENewsController extends BaseController {
 	public String addUser(News news, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		Json json = new Json();// 用于向前端发送消息
-		if (newsDAO.getById(news.getId()) != null) {
-			json.setMsg("添加新闻失败，该ID已经存在！");
-		} else {
-			newsDAO.save(news);
-			json.setMsg("添加新闻成功！");
-			json.setSuccess(true);
+		if(newsDAO.hasSameTitle(news.getTitle())){
+			json.setMsg("标题相同，已经有这条新闻了！");
+			json.setSuccess(false);
+			writeJson(json, response);
+			return null;
 		}
+		newsDAO.save(news);
+		json.setMsg("添加新闻成功！");
+		json.setSuccess(true);
 		writeJson(json, response);
 		return null;
 	}

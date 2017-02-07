@@ -112,14 +112,15 @@ body {
 </div>
 
 <table id="dg" title="新闻后台管理" class="easyui-datagrid"
-	style="width:700px;height:250px" url="listNews" toolbar="#toolbar"
+	style="width:1000px;height:280px" url="listNews" toolbar="#toolbar"
 	pagination="true" rownumbers="false" fitColumns="true"
 	singleSelect="true">
 	<thead>
 		<tr>
-			<th field="id" width="50">ID</th>
-			<th field="title" width="50">新闻标题</th>
-			<th field="descr" width="50">简要描述</th>
+			<th field="title" width="30%">新闻标题</th>
+			<th field="descr" width="30%">简要描述</th>
+			<th field="createTime" width="30%">创建时间</th>
+			<th field="rec" width="10%">是否推送</th>
 		</tr>
 	</thead>
 </table>
@@ -137,16 +138,18 @@ body {
 	<div class="ftitle">新闻内容</div>
 	<form id="fm" method="post" novalidate>
 		<div class="fitem">
-			<label>ID:</label> <input name="id" class="easyui-textbox" required="true">
+			<label>新闻标题:</label>
+			<input name="title" class="easyui-textbox" required="true" style="width:400px">
 		</div>
 		<div class="fitem">
-			<label>新闻标题:</label> <input name="title" class="easyui-textbox" required="true">
+			<label>创建时间:</label> <input class="easyui-datetimebox" name="createTime" required="true">
 		</div>
 		<div class="fitem">
-			<label>创建时间:</label> <input class="easyui-datebox" name="createTime" required="true">
+			<label>是否推送:</label> <input class="easyui-switchbutton" checked name="rec">
 		</div>
 		<div class="fitem">
-			<label>简要描述:</label> <input name="descr" class="easyui-textbox" required="true">
+			<label>新闻简介:</label> <br/>
+			<input class="easyui-textbox" name="descr" data-options="multiline:true" required="true" style="width:700px; height:80px;">
 		</div>
 		<div class="fitem">
 			<label>正文:</label>

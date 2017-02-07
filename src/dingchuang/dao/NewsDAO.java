@@ -2,6 +2,7 @@ package dingchuang.dao;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -56,6 +57,17 @@ public class NewsDAO {
 		session.update(newNews);
 		tx.commit();
 		HibernateUtil.closeSession();
+	}
+
+	public boolean hasSameTitle(String title) {
+		Session session = HibernateUtil.currentSession();
+		String hql="FROM News where title=:newtitle";
+		Query query=session.createQuery(hql);
+		query.setParameter("newtitle", title);
+		if(query.list().size()>0)
+			return true;
+		else
+			return false;
 	}
 	
 
