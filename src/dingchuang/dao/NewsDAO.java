@@ -11,7 +11,7 @@ import dingchuang.util.HibernateUtil;
 
 public class NewsDAO {
 
-	// Ҫ�ǲ����ڷ���NULL
+	// 要是不存在返回NULL
 	public News getById(int id) {
 		String sql = "FROM News where id=" + id;
 		Session session = HibernateUtil.currentSession();
@@ -25,7 +25,7 @@ public class NewsDAO {
 	}
 
 	public void save(News news) {
-		//�����ʱ��Ҫ��Ҫtitle��Ψһ��
+		//保存的时候要主要title是唯一的
 		Session session = HibernateUtil.currentSession();
 		Transaction tx = session.beginTransaction();
 		session.save(news);
@@ -52,6 +52,7 @@ public class NewsDAO {
 	}
 
 	public void update(News newNews) {
+		newNews=qryNewsWithTitle(newNews.getTitle());//带上来的时候没有ID，所以不能直接update，需要先查一遍
 		Session session=HibernateUtil.currentSession();
 		Transaction tx=session.beginTransaction();
 		session.update(newNews);
@@ -68,6 +69,16 @@ public class NewsDAO {
 			return true;
 		else
 			return false;
+	}
+
+	public News qryNewsWithTitle(String title) {
+		Session session=HibernateUtil.currentSession();
+		String hql="FROM News where title=:title";
+		Query query=session.createQuery(hql);
+		query.setParameter("title", title);
+		List<News> retNews=query.list();
+		HibernateUtil.closeSession();
+		return retNews.get(0);
 	}
 	
 

@@ -39,19 +39,18 @@ body {
 	});
 
 	
-	function newNews() {
+	function addNews() {
 		$('#dlg').dialog('open').dialog('setTitle', '添加新闻');
-		$('#fm').form('clear');
+		$('#fm').form('clear'); 
 		url = 'addNews';
 	}
 	function editNews() {
-		var row = $('#dg').datagrid('getSelected');
-		if (row) {
 			$('#dlg').dialog('open').dialog('setTitle', '编辑新闻');
-			$('#fm').form('load', row);
+			//fresh the dialog(actually window) with ajax
+			$('#fm').form('load', 'qryOneNews/'+$('#dg').datagrid('getSelected').title);
 			url = 'editNews';
-		}
 	}
+	
 	function saveNews() {
 		$('#fm').form('submit', {
 			url : url,
@@ -111,6 +110,8 @@ body {
 	<div>该页面可以对新闻进行编辑，请谨慎操作</div>
 </div>
 
+
+<!-- 主要显示的datagrid -->
 <table id="dg" title="新闻后台管理" class="easyui-datagrid"
 	style="width:1000px;height:280px" url="listNews" toolbar="#toolbar"
 	pagination="true" rownumbers="false" fitColumns="true"
@@ -126,12 +127,14 @@ body {
 </table>
 <div id="toolbar">
 	<a href="javascript:void(0);" class="easyui-linkbutton"
-		iconCls="icon-add" plain="true" onclick="newNews()">新增</a> <a href="#"
+		iconCls="icon-add" plain="true" onclick="addNews()">新增</a> <a href="#"
 		class="easyui-linkbutton" iconCls="icon-edit" plain="true"
 		onclick="editNews()">编辑</a> <a href="#" class="easyui-linkbutton"
 		iconCls="icon-remove" plain="true" onclick="removeNews()">删除</a>
 </div>
 
+
+<!-- 弹出来的对话框 -->
 <div id="dlg" class="easyui-dialog"
 	style="width:1000px;height:600px;padding:10px 20px" closed="true"
 	buttons="#dlg-buttons">
@@ -142,7 +145,7 @@ body {
 			<input name="title" class="easyui-textbox" required="true" style="width:400px">
 		</div>
 		<div class="fitem">
-			<label>创建时间:</label> <input class="easyui-datetimebox" name="createTime" required="true">
+			<label>创建时间:</label> <input class="easyui-datebox" name="createTime" required="true">
 		</div>
 		<div class="fitem">
 			<label>是否推送:</label> <input class="easyui-switchbutton" checked name="rec">
