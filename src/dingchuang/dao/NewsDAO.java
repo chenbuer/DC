@@ -52,7 +52,8 @@ public class NewsDAO {
 	}
 
 	public void update(News newNews) {
-		newNews=qryNewsWithTitle(newNews.getTitle());//带上来的时候没有ID，所以不能直接update，需要先查一遍
+		News oldNews=qryNewsWithTitle(newNews.getTitle());//带上来的时候没有ID，所以不能直接update，需要先查一遍
+		newNews.setId(oldNews.getId());
 		Session session=HibernateUtil.currentSession();
 		Transaction tx=session.beginTransaction();
 		session.update(newNews);

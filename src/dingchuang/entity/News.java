@@ -28,7 +28,7 @@ public class News implements java.io.Serializable {
 	@Column(name = "content", length = 65535)
 	private String content;
 
-	@Column(name = "createTime", columnDefinition = "DATETIME")
+	@Column(name = "createTime", columnDefinition = "DATE")
 	private Date createTime;
 
 	@Column(name = "rec")
